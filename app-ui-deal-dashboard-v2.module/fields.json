@@ -1,0 +1,80 @@
+[ {
+  "id" : "f543ec86-cabf-455c-8ec2-9570685b76ee",
+  "name" : "deal_pipeline_id",
+  "display_width" : null,
+  "label" : "Deal Pipeline ID",
+  "inline_help_text" : "You can get it from Deal Pipeline in Portal Settings\n<br>\nhttps://i.imgur.com/4UNwMTf.png",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : "8091214"
+}, {
+  "id" : "be99ce30-c06e-81bc-8fae-a7c4e3798464",
+  "name" : "page_title",
+  "display_width" : null,
+  "label" : "page title",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : "Deals"
+}, {
+  "id" : "1a4bcc08-1422-cbd0-2ad0-42d02ca34380",
+  "name" : "tasks_title",
+  "display_width" : null,
+  "label" : "Deals",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : "Total Deals"
+}, {
+  "id" : "546d560a-e6d7-3dea-1c9d-73e153049989",
+  "name" : "type_title",
+  "display_width" : null,
+  "label" : "In Progress",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : "In Progress"
+}, {
+  "id" : "b050f204-c5b0-c40c-ad03-32827942ace6",
+  "name" : "completed",
+  "display_width" : null,
+  "label" : "Completed",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "allow_new_line" : false,
+  "show_emoji_picker" : false,
+  "type" : "text",
+  "default" : "Completed"
+}, {
+  "id" : "5fb6ad75-8121-9898-6226-92299aa5a5db",
+  "name" : "column_property",
+  "display_width" : null,
+  "label" : "Select Column Property",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : null,
+    "max" : null,
+    "sorting_label_field" : null,
+    "default" : null
+  },
+  "object_type" : "deal",
+  "type" : "crmobjectproperty",
+  "default" : {
+    "property" : null
+  }
+} ]

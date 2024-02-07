@@ -1,0 +1,155 @@
+{% set properties = [] %}
+{% for item in module.column_property %}
+{% do properties.append(item.property) %}
+{% endfor %}
+
+{% set partner = crm_associations(contact.hs_object_id, 'USER_DEFINED', 2, 'limit=100', '', false) %} 
+{% set deals = crm_associations(contact.hs_object_id, 'HUBSPOT_DEFINED', 4, 'limit=100&orderBy=-createdate&pipeline={{ module.deal_pipeline_id }}', properties|join(","), true) %}
+
+{#
+
+{% set deals = crm_associations(partner.results[0].id, 'USER_DEFINED', 17, 'limit=100&orderBy=-createdate', properties|join(","), true) %}  
+
+{% set deals = crm_objects("deal",'limit=100&orderBy=-createdate', properties|join(","), true) %}
+
+{{ deals }}
+#}
+
+{#
+{% set associated_contacts = crm_associations(8091214, "USER_DEFINED", 2, 'limit=100&orderBy=-createdate', properties|join(","), true) %} 
+{{ associated_contacts }}
+#}
+
+ 
+<div class="dashboardHome">
+  <div class="statsTitle">
+    <h4 class="text-primary-600">
+      {{ module.page_title }}
+    </h4>
+  </div>
+  <div class="statsSection">
+    <div class="statsCard">
+      <div class="ssLabel">
+        {{ module.tasks_title }}
+      </div>
+      <div class="ssValue">
+        <h4 class="text-primary-600">
+          {{deals.total?deals.total:0}}
+        </h4>
+      </div>
+    </div>
+    <div class="statsCard">
+      <div class="ssLabel">
+        {{ module.type_title }}
+      </div>
+      <div class="ssValue">
+        {% set x = [] %}
+        {% set i = 0 %}
+        {% for deal in deals.results %}
+        {% if deal.dealstage == 8091215 or deal.dealstage == 8091216 or deal.dealstage == 8091217 or deal.dealstage == 8091218 or deal.dealstage == 8091219 or deal.dealstage == 17247450  %}  
+
+        {% set i = i + 1 %} 
+        {% endif %}
+        {% do x.append(i) %}
+        {% endfor %}
+        <h4 class="text-primary-600"> {{x|last?x|last:0}}</h4>
+      </div>
+    </div>
+    <div class="statsCard">
+      <div class="ssLabel">
+        {{ module.completed }}
+      </div>
+      <div class="ssValue">
+        {% set x = [] %}
+        {% set i = 0 %}
+        {% for deal in deals.results %}
+        {% if deal.dealstage == 8091220 or deal.dealstage == 5392299 %}  
+        {% set i = i + 1 %} 
+        {% endif %}
+        {% do x.append(i) %}
+        {% endfor %}
+        <h4 class="text-primary-600"> {{x|last?x|last:0}}</h4>
+      </div>
+    </div>
+  </div>
+  <div class="taskTable">
+    <div class="tableHeader">
+
+      {% for item in module.column_property %}
+      <div class="thead">
+        {{ item.property_definition.label }}
+      </div>  
+      
+      
+      {% endfor %}
+
+    </div>
+
+
+    <div class="taskContent" id="results">
+      {% for deal in deals.results %}
+  
+      <div class="task">
+        <div class="taskTop">
+
+
+          {% for item in module.column_property %}
+          
+          
+           
+          
+          
+          <div class="ttName ttText">
+            <div class="ttLeft">
+              {{ item.property_definition.label }} :
+            </div>
+            <div class="ttRight">
+              
+            
+             
+              
+              
+            {% if deal|attr(item.property) == 8091215 %}
+            ENQUIRY LEAD
+            {% elif deal|attr(item.property) == 8091216 %}
+            DISCOVERY CALL
+            {% elif deal|attr(item.property) == 8091217 %}
+              CREATE PROPOSAL
+            {% elif deal|attr(item.property) == 8091218 %}
+            SOLUTION WORKSHOP
+            {% elif deal|attr(item.property) == 8091219 %}
+            DECISION CALL
+            {% elif deal|attr(item.property) == 17247450 %}
+            VERBAL
+            {% elif deal|attr(item.property) == 8091220 %}
+            CLOSED WON
+            {% elif deal|attr(item.property) == 5392299 %}
+            PSO - HubSpot
+            {% elif deal|attr(item.property) == 8091221 %} 
+              CLOSED LOST
+            {% else %}
+              
+               {{deal|attr(item.property)}}
+              
+              
+            {% endif %}
+              
+              
+              
+              
+            </div>
+          </div>
+          
+          
+          {% endfor %}
+
+        </div>
+
+        {% endfor %}
+
+      </div>
+    </div>
+
+  </div>
+
+</div>
